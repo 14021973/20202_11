@@ -7,16 +7,18 @@
     String publisher ;
     String isbn ;
 
-    Book(String booktitle , String bookauthor , int bookreleaseDate ,  int bookpages ,  String bookpublisher ,  String bookisbn )
-    {
-title=booktitle;
-author=bookauthor;
-releaseDate=bookreleaseDate;
-pages=bookpages;
-publisher=bookpublisher;
-isbn=bookisbn;
-    }
+     public Book(String title, String author, int releaseDate, int pages, String publisher) {
+         this.title = title;
+         this.author = author;
+         this.releaseDate = releaseDate;
+         this.pages = pages;
+         this.publisher = publisher;
+     }
 
+     public Book(String title, String author, int releaseDate, int pages, String publisher, String isbn) {
+        this(title,author,releaseDate,pages,publisher);
+         this.isbn = isbn;
+     }
 
      void prontInfo() {
        String info=title +" "+        author+" "+        releaseDate+" "+        pages+" "+        publisher+" "+        isbn;
