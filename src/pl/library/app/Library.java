@@ -1,6 +1,10 @@
- class Library {
+package pl.library.app;
+
+import pl.library.model.Book;
+
+class Library {
      public static void main(String[] args) {
-        final String appName = "Biblioteka v0.4";
+        final String appName = "Biblioteka v0.5";
 
         Book book1=new Book("W pustyni i w puszczy","Henryk Sienkiewicz",2010,296,"Greg","9788373271890");
         Book book2=new Book("ABC gotowania","Jan Kowalski",2011,29,"ABC","123353453466");
@@ -8,8 +12,8 @@
 
         System.out.println(appName);
         System.out.println("Książki dostępne w bibliotece");
-        book1.prontInfo();
-        book2.prontInfo();
-        book3.prontInfo();
+        book1.printInfo();
+        book2.printInfo();
+        book3.printInfo();
     }
 }
