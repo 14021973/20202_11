@@ -31,14 +31,13 @@ public class Magazin extends  Publication{
     }
 
     public Magazin(String title, String publisher, String language, int releaseDate, int month, int day) {
-        this.setTitle(title);
-        this.setPublisher(publisher);
-        this.setReleaseDate(releaseDate);
+
+        super(title,releaseDate,publisher);
         this.month = month;
         this.day = day;
         this.language = language;
     }
-
+@Override
     public  void printInfo(){
 
         String info=getTitle() +"; "+ getPublisher() +"; "+    getReleaseDate()+"; "+ month +"; "+ day +"; "+language;

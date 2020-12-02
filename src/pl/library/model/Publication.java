@@ -5,6 +5,13 @@ public class Publication {
     private int releaseDate ;
     private String publisher ;
 
+
+    public Publication(String title, int releaseDate, String publisher) {
+        this.title = title;
+        this.releaseDate = releaseDate;
+        this.publisher = publisher;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -28,4 +35,7 @@ public class Publication {
     public void setPublisher(String publisher) {
         this.publisher = publisher;
     }
+
+    public void printInfo(){}
+
 }

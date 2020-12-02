@@ -35,16 +35,15 @@ public class Book extends Publication{
     }
 
     public Book(String title, String author, int releaseDate, int pages, String publisher, String isbn) {
-         this.setTitle(title) ;
-         this.setReleaseDate(releaseDate);
-         this.setPublisher(publisher);
+
+        super(title,releaseDate,publisher);
          this.author = author;
          this.pages = pages;
          this.isbn = isbn;
      }
 
 
-
+@Override
      public void printInfo() {
        String info=getTitle() +"; "+        author+"; "+        getReleaseDate()+"; "+        pages+"; "+        getPublisher();
 
