@@ -49,7 +49,7 @@ public class DataReader {
         System.out.println("Podaj miesiac:");
         int miesiac = getInt();
 
-        System.out.println("Podaj dzien wydania:");
+        System.out.println("Podaj dzień wydania:");
         int dzien = getInt();
 
         return new Magazin (tytul,  wydawnictwo, jezyk, rok, miesiac, dzien);
