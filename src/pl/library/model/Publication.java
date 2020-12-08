@@ -1,5 +1,7 @@
 package pl.library.model;
 
+import java.util.Objects;
+
 public class Publication {
     private String title ;
     private int releaseDate ;
@@ -36,6 +38,25 @@ public class Publication {
         this.publisher = publisher;
     }
 
-    public void printInfo(){}
+    @Override
+    public String toString() {
+        return "Publication{" +
+                "title='" + title + '\'' +
+                ", releaseDate=" + releaseDate +
+                ", publisher='" + publisher + '\'' +
+                '}';
+    }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Publication that = (Publication) o;
+        return releaseDate == that.releaseDate && Objects.equals(title, that.title) && Objects.equals(publisher, that.publisher);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, releaseDate, publisher);
+    }
 }
