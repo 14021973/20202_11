@@ -7,59 +7,37 @@ public class Library {
     private int publication_number = 0;
 
 
+    public Publication[] getPublications() {
+        Publication[] result=new Publication[publication_number];
+        for (int i = 0; i < result.length; i++) {
+            result[i]=publications[i];
+        }
+        return result;
+    }
+
     public void addBook(Book book) {
 
-        if (publication_number < MAX_PUBLICATIONS) {
-            publications[publication_number] = book;
-            publication_number++;
-        } else {
-            System.out.println("Nie możesz dodaćjuż żadnej książki");
-        }
-
+        addPublication(book);
     }
 
     public void addMagazine(Magazin magazin) {
 
-        if (publication_number < MAX_PUBLICATIONS) {
-            publications[publication_number] = magazin;
-            publication_number++;
-        } else {
-            System.out.println("Nie możesz dodaćjuż żadnego magazynu");
-        }
-
+        addPublication(magazin);
     }
 
-    public void printBooks() {
-        int countBooks = 0;
-        for (int i = 0; i < publication_number; i++) {
-            if (publications[i] instanceof Book) {
-                System.out.println(publications[i]);
-                countBooks++;
-            }
+public void addPublication(Publication publication){
+
+        if (publication_number>=MAX_PUBLICATIONS){
+            throw new ArrayIndexOutOfBoundsException("Max publications" );
         }
-        if (countBooks == 0) {
-            System.out.println("Brak książek do wyświetlenia");
-        }
-
-
-    }
-
-
-    public void printMagazines() {
-        int countMagazines = 0;
-
-        for (int i = 0; i < publication_number; i++) {
-            if (publications[i] instanceof Magazin) {
-                System.out.println(publications[i]);
-                countMagazines++;
-            }
-        }
-        if (countMagazines == 0) {
-            System.out.println("Brak magazynów do wyświetlenia");
-        }
-
-
+    publications[publication_number] = publication;
+    publication_number++;
     }
 }
+
+
+
+
+
 
 
