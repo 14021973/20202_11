@@ -8,25 +8,30 @@ import java.util.Scanner;
 public class DataReader {
 
     private Scanner scanner=new Scanner(System.in);
+    private ConsolePrinter printer;
+
+    public DataReader(ConsolePrinter printer) {
+        this.printer = printer;
+    }
 
     public Book readAndCreateBook() {
 
-        System.out.println("Podaj tytuł:");
+        printer.printLine("Podaj tytuł:");
         String tytul = scanner.nextLine();
 
-        System.out.println("Podaj autora:");
+        printer.printLine("Podaj autora:");
         String autor = scanner.nextLine();
 
-        System.out.println("Podaj rok wydania:");
+        printer.printLine("Podaj rok wydania:");
         int rok = getInt();
 
-        System.out.println("Podaj liczbę stron:");
+        printer.printLine("Podaj liczbę stron:");
         int strony = getInt();
 
-        System.out.println("Podaj wydawnictwo:");
+        printer.printLine("Podaj wydawnictwo:");
         String wydawnictwo = scanner.nextLine();
 
-        System.out.println("Podaj ISBN:");
+        printer.printLine("Podaj ISBN:");
         String isbn = scanner.nextLine();
 
         return new Book (tytul, autor, rok, strony, wydawnictwo, isbn);
@@ -34,32 +39,34 @@ public class DataReader {
 
     public Magazin readAndCreateMagazine() {
 
-        System.out.println("Podaj tytuł:");
+        printer.printLine("Podaj tytuł:");
         String tytul = scanner.nextLine();
 
-        System.out.println("Podaj wydawnictow:");
+        printer.printLine("Podaj wydawnictow:");
         String wydawnictwo = scanner.nextLine();
 
-        System.out.println("Podaj język:");
+        printer.printLine("Podaj język:");
         String jezyk = scanner.nextLine();
 
-        System.out.println("Podaj rok wydania:");
+        printer.printLine("Podaj rok wydania:");
         int rok = getInt();
 
-        System.out.println("Podaj miesiac:");
+        printer.printLine("Podaj miesiac:");
         int miesiac = getInt();
 
-        System.out.println("Podaj dzień wydania:");
+        printer.printLine("Podaj dzień wydania:");
         int dzien = getInt();
 
         return new Magazin (tytul,  wydawnictwo, jezyk, rok, miesiac, dzien);
     }
 
     public int getInt(){
+        try {
+            return scanner.nextInt();
+        } finally {
+            scanner.nextLine();
+        }
 
-        int number= scanner.nextInt();
-        scanner.nextLine();
-        return  number;
 
     }
 

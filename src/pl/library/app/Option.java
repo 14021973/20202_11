@@ -1,5 +1,7 @@
 package pl.library.app;
 
+import pl.library.app.exception.NoSuchOptionException;
+
 public enum Option {
 
     EXIT(0," - wyjście"),
@@ -29,9 +31,11 @@ public enum Option {
         return value + description;
     }
 
-    static Option createFromInt(int option){
-
-    return Option.values()[option];
-
+    static Option createFromInt(int option) throws NoSuchOptionException {
+    try {
+        return Option.values()[option];
+    } catch (ArrayIndexOutOfBoundsException e) {
+    throw new NoSuchOptionException("Brak opcji o ID " + option);
+    }
     }
 }
