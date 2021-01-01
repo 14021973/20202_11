@@ -1,6 +1,6 @@
 package pl.library.app;
 
-import pl.library.app.exception.NoSuchOptionException;
+import pl.library.exception.NoSuchOptionException;
 import pl.library.io.ConsolePrinter;
 import pl.library.io.DataReader;
 import pl.library.model.Book;
