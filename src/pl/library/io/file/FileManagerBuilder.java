@@ -1,5 +1,6 @@
 package pl.library.io.file;
 
+import pl.library.exception.NoSuchFileException;
 import pl.library.io.ConsolePrinter;
 import pl.library.io.DataReader;
 
@@ -18,6 +19,9 @@ public class FileManagerBuilder {
         switch (fileType) {
             case SERIAL:
                 return new SerializableFileManager();
+
+            case CSV:
+                return new CsvFileManager();
             default:
                 throw new NoSuchFileException("Nieobsługiwany typ danych");
         }

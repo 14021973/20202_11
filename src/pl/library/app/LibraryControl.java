@@ -2,6 +2,7 @@ package pl.library.app;
 
 import pl.library.exception.DataExportException;
 import pl.library.exception.DataImportException;
+import pl.library.exception.InvalidDataException;
 import pl.library.exception.NoSuchOptionException;
 import pl.library.io.ConsolePrinter;
 import pl.library.io.DataReader;
@@ -32,7 +33,7 @@ public class LibraryControl {
         try {
             library = fileManager.importData();
             printer.printLine("Zaimportowałem dane !!!");
-        } catch (DataImportException e) {
+        } catch (DataImportException |InvalidDataException e) {
             printer.printLine(e.getMessage());
             printer.printLine("Założyłem nową bazę");
             library= new Library();
@@ -107,7 +108,7 @@ public class LibraryControl {
 
         try {
             Magazin magazin=dataReader.readAndCreateMagazine();
-            library.addMagazine(magazin);
+            library.addPublication(magazin);
         } catch (InputMismatchException e) {
             printer.printLine("Nie udało się utworzyć magazynu, niepoprawne dane");
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -131,7 +132,7 @@ public class LibraryControl {
     private void addBook() {
         try {
             Book book = dataReader.readAndCreateBook();
-            library.addBook(book);
+            library.addPublication(book);
         } catch (InputMismatchException e) {
             printer.printLine("Nie udało się utworzyć książki, niepoprawne dane");
         } catch (ArrayIndexOutOfBoundsException e) {

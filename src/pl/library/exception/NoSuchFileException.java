@@ -1,4 +1,4 @@
-package pl.library.io.file;
+package pl.library.exception;
 
 public class NoSuchFileException extends RuntimeException{
     public NoSuchFileException(String message) {

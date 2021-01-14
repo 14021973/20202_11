@@ -17,15 +17,7 @@ public class Library implements Serializable {
         return result;
     }
 
-    public void addBook(Book book) {
 
-        addPublication(book);
-    }
-
-    public void addMagazine(Magazin magazin) {
-
-        addPublication(magazin);
-    }
 
 public void addPublication(Publication publication){
 
