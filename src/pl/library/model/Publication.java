@@ -1,8 +1,9 @@
 package pl.library.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Publication {
+public class Publication implements Serializable {
     private String title ;
     private int releaseDate ;
     private String publisher ;

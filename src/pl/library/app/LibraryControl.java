@@ -1,8 +1,12 @@
 package pl.library.app;
 
+import pl.library.exception.DataExportException;
+import pl.library.exception.DataImportException;
 import pl.library.exception.NoSuchOptionException;
 import pl.library.io.ConsolePrinter;
 import pl.library.io.DataReader;
+import pl.library.io.file.FileManager;
+import pl.library.io.file.FileManagerBuilder;
 import pl.library.model.Book;
 import pl.library.model.Library;
 import pl.library.model.Magazin;
@@ -20,9 +24,24 @@ public class LibraryControl {
 
     private ConsolePrinter printer=new ConsolePrinter();
     private DataReader dataReader= new DataReader(printer);
-    private Library library = new Library();
+    private FileManager fileManager;
+    private Library library;
 
-    public void controlLoop(){ 
+    LibraryControl (){
+        fileManager = new FileManagerBuilder(printer,dataReader).build();
+        try {
+            library = fileManager.importData();
+            printer.printLine("Zaimportowałem dane !!!");
+        } catch (DataImportException e) {
+            printer.printLine(e.getMessage());
+            printer.printLine("Założyłem nową bazę");
+            library= new Library();
+
+        }
+
+    }
+
+    void controlLoop(){
 
             Option option;
 
@@ -97,6 +116,12 @@ public class LibraryControl {
     }
 
     private void exit() {
+        try {
+            fileManager.exportData(library);
+            printer.printLine("Export OK ");
+        } catch (DataExportException e){
+            printer.printLine((e.getMessage()));
+        }
         printer.printLine("Bye");
         dataReader.close();
         }

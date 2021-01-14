@@ -66,8 +66,11 @@ public class DataReader {
         } finally {
             scanner.nextLine();
         }
+    }
 
-
+    public String getString()
+    {
+        return scanner.nextLine();
     }
 
     public void close(){
