@@ -64,6 +64,12 @@ public class LibraryControl {
                 case SHOW_MAGAZINE:
                     printMagazins();
                     break;
+                case DELETE_BOOK:
+                    deleteBook();
+                    break;
+                case DELETE_MAGAZINE:
+                    deleteMagazine();
+                    break;
                 case EXIT:
                     exit();
                     break;
@@ -74,6 +80,10 @@ public class LibraryControl {
 
             } while (option!= Option.EXIT);
     }
+
+
+
+
 
     private void printOptions() {
         printer.printLine("Wybierz opcję: ");
@@ -115,6 +125,17 @@ public class LibraryControl {
             printer.printLine("Osiągnięto limit pojemności, nie można dodać kolejnego magazynu");
         }
     }
+    private void deleteMagazine() {
+        try {
+            Magazin magazin = dataReader.readAndCreateMagazine();
+            if (library.removePublication(magazin))
+                printer.printLine("Usunięto magazyn");
+            else
+                printer.printLine("Nie udało się usunąć magazynu");
+        } catch (InputMismatchException e){
+            printer.printLine("Nie udało się usunąć wskazanego magazynu");
+        }
+    }
 
     private void exit() {
         try {
@@ -139,8 +160,54 @@ public class LibraryControl {
             printer.printLine("Osiągnięto limit pojemności, nie można dodać kolejnej książki");
         }
     }
+
+    private void deleteBook() {
+        try {
+            Book book = dataReader.readAndCreateBook();
+            if (library.removePublication(book))
+                printer.printLine("Usunięto książkę");
+            else
+                printer.printLine("Nie udało się usunąć książki");
+        } catch (InputMismatchException e){
+            printer.printLine("Nie udało się usunąć wskazanej książki");
+        }
+    }
+
+
     private void printBooks() {
         Publication[] publications = library.getPublications();
         printer.printBooks(publications);
+    }
+
+
+    private enum Option {
+        EXIT(0, "Wyjście z programu"),
+        ADD_BOOK(1, "Dodanie książki"),
+        ADD_MAGAZINE(2,"Dodanie magazynu/gazety"),
+        SHOW_BOOK(3, "Wyświetlenie dostępnych książek"),
+        SHOW_MAGAZINE(4, "Wyświetlenie dostępnych magazynów/gazet"),
+        DELETE_BOOK(5, "Usuń książkę"),
+        DELETE_MAGAZINE(6, "Usuń magazyn");
+
+        private int value;
+        private String description;
+
+        Option(int value, String desc) {
+            this.value = value;
+            this.description = desc;
+        }
+
+        @Override
+        public String toString() {
+            return value + " - " + description;
+        }
+
+        static Option createFromInt(int option) throws NoSuchOptionException {
+            try {
+                return Option.values()[option];
+            } catch(ArrayIndexOutOfBoundsException e) {
+                throw new NoSuchOptionException("Brak opcji o id " + option);
+            }
+        }
     }
 }
